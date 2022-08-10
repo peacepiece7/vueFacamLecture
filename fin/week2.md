@@ -162,3 +162,17 @@ h1.is-red {
 </style>
 
 ```
+
+
+## prettierrc.js
+
+prettier도 적용하려면 아래와 같이 ㄱㄱ
+```bash
+npm i -D prettier eslint-config-prettier
+```
+```js
+// eslint.config.js
+{
+  extends : ["eslint plugins..", "prettier"]
+}
+```
