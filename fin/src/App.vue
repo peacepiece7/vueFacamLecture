@@ -1,20 +1,28 @@
 <template>
-  <h1></h1>
+  <HelloWorld
+    abc="ABC"
+    :c="count" 
+    @wow="count += $event" />
+  <HelloWorld
+    abc="XXX" />
+  <button @click="count +=1">
+    Increase
+  </button>
 </template>
-
 <script>
+import HelloWorld from './components/HelloWorld.vue'
   export default {
+    components : {
+      HelloWorld
+    },
     data() {
       return {
-        message: 'hello, vue',
+        count : 0
       }
-    },
-  }
-</script>
+  },
+  methods : {
 
-<style>
-  h1.is-red {
-    color: red;
-    font-size: 100px;
   }
-</style>
+}
+</script>
+<style></style>
