@@ -1,28 +1,20 @@
 <template>
-  <HelloWorld
-    abc="ABC"
-    :c="count" 
-    @wow="count += $event" />
-  <HelloWorld
-    abc="XXX" />
-  <button @click="count +=1">
-    Increase
-  </button>
+  <TheHeader />
+  <RouterView />
 </template>
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-  export default {
-    components : {
-      HelloWorld
-    },
-    data() {
-      return {
-        count : 0
-      }
-  },
-  methods : {
 
-  }
+import TheHeader from './components/TheHeader.vue'
+
+export default {
+  components : {
+    TheHeader
+  },
+  data() {
+      return {
+       message : 'Hello?!'
+     }
+    },
 }
 </script>
 <style></style>
