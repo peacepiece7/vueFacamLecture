@@ -24,13 +24,11 @@ export default {
     }
   },
   methods : {
-      async  searchMovies() {
+      async searchMovies() {
       const res = await fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${this.title}`)
       const movies = await res.json()
       if(movies.Response == 'True')  this.movies = movies.Search
-     
     }
   }
 }
-
 </script>

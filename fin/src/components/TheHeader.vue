@@ -16,8 +16,8 @@
 <!-- scoped 필수 -->
 <!-- style hash -->
 <style scoped>
-.abc  {
-    color : red;
-    font-weight: 700;
+header {
+  position: fixed;
+  top: 0;
 }
 </style>
