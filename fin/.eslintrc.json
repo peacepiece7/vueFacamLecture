@@ -8,7 +8,6 @@
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
     "eol-last": ["error", "always"],
-
     "vue/html-closing-bracket-newline": [
       "error",
       {

@@ -1,21 +1,19 @@
 <template>
-<button  @click="messageStore.handler">Handle</button>
-<Container></Container>
+  <button @click="messageStore.handler">Handle</button>
+  <Container></Container>
 </template>
 
 <script>
-
-import { mapStores } from "pinia"
-import { messageStore } from "./store"
-import Container from "./components/Container.vue"
+import { mapStores } from "pinia";
+import { messageStore } from "./store";
+import Container from "~/components/Container.vue";
 
 export default {
-  components : {
-    Container
+  components: {
+    Container,
   },
-  computed : {
-    ...mapStores(messageStore)
-  }
-}
-
+  computed: {
+    ...mapStores(messageStore),
+  },
+};
 </script>
