@@ -38,15 +38,16 @@ export const todoStore = defineStore('todo', {
         }
     }
 })
-
 async function request(options) {
     const { method, body } = options
+    console.log("METHOD : ", method, "BODY :", body)
     const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos', {
         method,
         headers: {
-            'content-type': 'apllication/json',
-            apikey: 'FinTech202207',
-            username: 'JungTaeWook'
+            "Access-Control-Origin" : true,
+            'content-type': 'application/json',
+            'apikey': 'FinTech202207',
+            'username': 'jungTaeWook'
         },
         body: JSON.stringify(body)
     })
