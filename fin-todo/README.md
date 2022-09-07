@@ -218,3 +218,16 @@ undefined
 ```json
 true
 ```
+
+
+## vue.extensions
+
+
+- 여러 파일마다 confing가 다를 수도 있기 떄문에 추천하지 않음
+- a.js, a.ts <== 이런 거
+
+```js
+    // resolve.extensions#
+    // Type: string[]
+    // Default: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'] 생략가능한 확장자 .vue를 추가하면 index.vue처럼 우선 순위대로 찾음
+```

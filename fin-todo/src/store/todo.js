@@ -4,20 +4,20 @@ import { defineStore } from "pinia"
 export const todoStore = defineStore('todo', {
     // data
     state: () => ({
-        todos: []
+        todos: [],
+        filters : {
+            done : 'all',
+            sortBy : 'none'
+        }
     }),
     // computed
     getter: {
+        filteredTodos() {
+            
+        }
     },
     // methods
     actions: {
-        async createTodo(title) {
-            await request({
-                method: 'POST',
-                body: { title }
-            })
-            this.readTodos()
-        },
         async readTodos() {
             this.todos = await request({
                 method: 'GET'
@@ -25,23 +25,54 @@ export const todoStore = defineStore('todo', {
             console.log("this.todos")
             console.log(this.todos)
         },
+        async createTodo(title) {
+            await request({
+                method: 'POST',
+                body: { title }
+            })
+            this.readTodos()
+        },
         async updateTodo(payload) {
-            const { title, done, order } = payload
+            const { id, title, done, order } = payload
+            console.log("updateTodo :", id, title, done, order)
             await request({
                 method: 'PUT',
                 body: {
                     title,
                     done,
-                    order
+                    order,
+                },
+                id  
+            })
+            this.readTodos()
+        },
+        async deleteTodo(id) {
+            await request({
+                method : "DELETE",
+                id
+            })
+            this.readTodos()
+        },
+        async reorderTodos({oldIndex, newIndex}) {
+            const todoIds = this.todos.map((todo) => todo.id)
+            const oldId = todoIds[oldIndex]
+            todoIds.splice(oldIndex, 1)
+            todoIds.splice(newIndex, 0, oldId);
+            await request({
+                id : 'reorder',
+                method : 'PUT',
+                body : {
+                    todoIds
                 }
             })
+            await this.readTodos()
         }
     }
 })
+
 async function request(options) {
-    const { method, body } = options
-    console.log("METHOD : ", method, "BODY :", body)
-    const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos', {
+    const { method, body, id = '' } = options
+    const res = await fetch(`https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos/${id}`, {
         method,
         headers: {
             "Access-Control-Origin" : true,
