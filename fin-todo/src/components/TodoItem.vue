@@ -31,7 +31,6 @@
 </template>
 
 <!-- v-model(한글 사용 필요 없을 경우), value @input(한글 사용 필요 할 경우) -->
-
 <script>
 import dayjs from "dayjs";
 import { mapStores } from "pinia";

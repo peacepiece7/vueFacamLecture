@@ -12,8 +12,36 @@ export const todoStore = defineStore('todo', {
     }),
     // computed
     getter: {
-        filteredTodos() {
-            
+        filteredTodos(state) {
+            let filteredTodos = [...state.todos]
+            console.log("state.filters :", state.filters)
+            // 표시
+            if(state.filters.done !== "all") {
+                filteredTodos = state.todos.filter(todo => {
+                    switch (state.filters.done) {
+                        case 'true' :
+                            return todo.done
+                        case 'false' :
+                            return !todo.done
+                    }
+                })
+            }
+            // 정렬
+            if(state.filters.sortBy !== 'none') {
+                filteredTodos.sort((a,b) => {
+                    const aTime = new Date(a.createdAt).getTime()
+                    const bTime = new Date(b.createdAt).getTime()
+                    switch(state.filters.sortBy) {
+                        case 'newest' :
+                            return bTime - aTime
+                        case 'oldest' :
+                            return aTime - bTime
+                        default:
+                            return 0
+                    }
+                })
+            }
+            return filteredTodos;
         }
     },
     // methods

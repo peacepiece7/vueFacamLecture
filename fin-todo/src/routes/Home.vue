@@ -26,6 +26,8 @@ export default {
   },
   created() {
     this.todoStore.readTodos();
+    console.log(" todoStore.filteredTodos :",  this.todoStore.filteredTodos)
+    console.log(" this.todoStore.todos :",  this.todoStore.todos)
   },
   mounted() {
     // html에 연결된 후 this.todoSotre.todos(요소,옵션) 요소를 선택 가능
